@@ -1,0 +1,52 @@
+ .menuListItemText {
+     font-size: 14px !important;
+ }
+
+ .headerLogo {
+     height: 64px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-bottom: 1px solid rgba(145, 158, 171, 0.16);
+ }
+
+ .sidebar {
+     position: fixed;
+     z-index: 1;
+     top: 0;
+     left: 0;
+     display: flex;
+     flex-direction: column;
+     width: 220px;
+     height: 100%;
+     translate: -220px 0;
+     background-color: #FFF;
+ }
+
+ .sidebar-border {
+     position: fixed;
+
+     left: 0;
+     width: 32px;
+     height: calc(100% + 20px);
+     background: #FFF;
+     animation: border 0.25s infinite linear;
+     animation-play-state: paused;
+ }
+
+ .sidebar-border:hover {
+     animation-play-state: running;
+ }
+
+ .sidebar.open {
+     translate: 0;
+     background: #FFF;
+ }
+
+ .sidebar.open~.sidebar-border {
+     opacity: 0;
+ }
+
+ .sidebar-toggle-close {
+     right: -38px !important;
+ }
