@@ -1,15 +1,14 @@
-.page {}
+.page {
+  /* background: #dedddc */
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
 }
+
+.home {
+  margin-left: 230px;
+  margin-top: 78px;
+}
+
+@media (prefers-color-scheme: dark) {}
 
 .main {
   display: flex;
@@ -29,9 +28,11 @@
 }
 
 @media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+  .page {}
+
+  .home {
+    margin-left: 0px;
+    margin-top: 28px;
   }
 
   .footer {

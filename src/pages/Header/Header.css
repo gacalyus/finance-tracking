@@ -1,0 +1,26 @@
+.header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 78px;
+    background-color: red
+}
+
+.header-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 230px;
+    padding: 1rem;
+}
+
+
+
+@media (max-width: 600px) {
+    .header-component {
+        margin-left: 0px;
+    }
+}

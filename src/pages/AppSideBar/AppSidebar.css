@@ -1,9 +1,10 @@
  .menuListItemText {
      font-size: 14px !important;
+     margin-left: 8px;
  }
 
  .headerLogo {
-     height: 64px;
+     height: 78px;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -12,30 +13,23 @@
 
  .sidebar {
      position: fixed;
-     z-index: 1;
+     z-index: 2;
      top: 0;
      left: 0;
      display: flex;
      flex-direction: column;
      width: 220px;
      height: 100%;
-     translate: -220px 0;
+     /* translate: -220px 0; */
      background-color: #FFF;
  }
 
- .sidebar-border {
-     position: fixed;
+ @media (max-width: 600px) {
+     .sidebar {
+         display: none;
+     }
 
-     left: 0;
-     width: 32px;
-     height: calc(100% + 20px);
-     background: #FFF;
-     animation: border 0.25s infinite linear;
-     animation-play-state: paused;
- }
 
- .sidebar-border:hover {
-     animation-play-state: running;
  }
 
  .sidebar.open {

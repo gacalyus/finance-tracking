@@ -1,14 +1,15 @@
 
-import homeLogo from "../../images/MenuIcon/homeLogo.svg"
+import homeLogo from "../../images/MenuIcon/sond.png"
 import company from "../../images/MenuIcon/company.svg"
 import customer from "../../images/MenuIcon/customer.svg"
 import product from "../../images/MenuIcon/product.svg"
 import forcasting from "../../images/MenuIcon/forcasting.svg"
 import sales from "../../images/MenuIcon/sales.svg"
 import role from "../../images/MenuIcon/role.svg"
-import plantListBlue from "../../images/MenuIcon/plantListBlue.svg"
+import plantList from "../../images/MenuIcon/plantList.svg"
 import Image from "next/image";
 import "./AppSidebar.css";
+import Link from "next/link"
 
 
 
@@ -16,11 +17,11 @@ export default function AppSidebar() {
 
 
     const menüItems = [
-        { id: 1, name: "Güncel Durum", disabled: false, path: "/dashboard", svg: plantListBlue },
+        { id: 1, name: "Güncel Durum", disabled: false, path: "/dashboard", svg: plantList },
 
-        { id: 2, name: "Gelirler", disabled: false, path: "/dashboard", svg: sales },
+        { id: 2, name: "Gelirler", disabled: false, path: "/income", svg: sales },
 
-        { id: 3, name: "Giderler", disabled: false, path: "/dashboard", svg: sales },
+        { id: 3, name: "Giderler", disabled: false, path: "/expenses", svg: sales },
 
         { id: 4, name: "Şirket", disabled: true, path: "/dashboard", svg: company },
 
@@ -32,32 +33,35 @@ export default function AppSidebar() {
 
         { id: 8, name: "Profil", disabled: true, path: "/dashboard", svg: role },
     ]
+    // #ff5757
+    // #2a1a42
     return (
-        <>
-            <div style={{ borderRight: "1px solid rgba(145, 158, 171, 0.16)" }} className={`sidebar open`}
-            >
 
-                <nav>
-                    <div className="headerLogo" >
-                        <Image
-                            src={homeLogo}
-                            alt="Next.js logo"
-                            width={180}
-                            height={38}
-                            priority
-                        />
-                    </div>
+        <div style={{ borderRight: "1px solid rgba(145, 158, 171, 0.16)", background: '#2a1a42' }} className={`sidebar open`}
+        >
 
-                    <div style={{ overflow: "auto", height: "640px" }} className='menuListItemText'  >
-                        <div style={{ overflow: "auto", height: "640px" }}   >
-                            <ul>
-                                {menüItems.map((item) => (
-                                    <li style={{ listStyleType: 'none', marginBottom: '1rem' }} key={item.id} >
+            <nav>
+                <div className="headerLogo" >
+                    <Image
+                        src={homeLogo}
+                        alt="Next.js logo"
+                        width={180}
+                        height={78}
+                        priority
+                    />
+                </div>
+
+                <div style={{ overflow: "auto", height: "640px" }} className='menuListItemText'  >
+                    <div style={{ overflow: "auto", height: "640px" }}   >
+                        <ul>
+                            {menüItems.map((item) => (
+                                <li style={{ listStyleType: 'none', marginBottom: '1rem' }} key={item.id} >
+                                    <Link href={item.path} style={{ textDecoration: 'none' }} >
                                         <button
                                             disabled={item.disabled}
                                             style={{
                                                 display: "flex", flexDirection: "row", alignItems: "center", justufiyContent: 'center', border: 'none', background: 'none',
-                                                color: !item.disabled ? "#3B74C8" : "#91A1A9"
+                                                color: !item.disabled ? "#ff5757" : "#91A1A9"
                                             }}
                                         >
                                             <Image
@@ -69,17 +73,15 @@ export default function AppSidebar() {
                                             />
                                             <span className='menuListItemText'>{item.name}  </span>
                                         </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-            </div >
-            <div style={{ borderRight: "1px solid rgba(145, 158, 171, 0.16)" }} className="sidebar-border" >
-                <div style={{ borderBottom: "1px solid rgba(145, 158, 171, 0.16)", height: "64px" }} > </div>
-            </div>
-        </>
+        </div >
+
     );
 };
