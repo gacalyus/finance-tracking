@@ -1,4 +1,7 @@
 
+"use client"
+
+
 import homeLogo from "../../images/MenuIcon/sond.png"
 import company from "../../images/MenuIcon/company.svg"
 import customer from "../../images/MenuIcon/customer.svg"
@@ -10,10 +13,13 @@ import plantList from "../../images/MenuIcon/plantList.svg"
 import Image from "next/image";
 import "./AppSidebar.css";
 import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { changeTitle } from "@/features/general/generalSlice"
 
 
 
 export default function AppSidebar() {
+    const dispatch = useDispatch()
 
 
     const menüItems = [
@@ -63,6 +69,7 @@ export default function AppSidebar() {
                                                 display: "flex", flexDirection: "row", alignItems: "center", justufiyContent: 'center', border: 'none', background: 'none',
                                                 color: !item.disabled ? "#ff5757" : "#91A1A9"
                                             }}
+                                            onClick={() => dispatch(changeTitle(item.name))}
                                         >
                                             <Image
                                                 src={item.svg}

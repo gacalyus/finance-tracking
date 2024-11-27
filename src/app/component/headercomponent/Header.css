@@ -4,8 +4,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 78px;
-    background-color: #ff5757;
+    height: 78px !important;
 }
 
 .header-component {
@@ -16,6 +15,9 @@
     padding: 1rem;
 }
 
+.app-title {
+    color: #403637;
+}
 
 
 @media (max-width: 600px) {

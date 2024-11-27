@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
     {
@@ -65,7 +65,7 @@ const data = [
 ];
 
 export default class ColumnChart extends PureComponent {
-    static demoUrl = 'https://codesandbox.io/p/sandbox/simple-bar-chart-72d7y5';
+
 
     render() {
         return (
@@ -76,8 +76,8 @@ export default class ColumnChart extends PureComponent {
                     data={data}
                     margin={{
                         top: 5,
-                        right: 30,
-                        left: 20,
+                        right: 5,
+                        left: 5,
                         bottom: 5,
                     }}
                 >

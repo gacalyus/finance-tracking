@@ -1,18 +1,25 @@
+"use client"
+
+import React from "react"
 import "./Header.css";
-import profil from "../../images/profilee.svg"
+import profil from "../../../images/profilee.svg"
 import Image from "next/image";
+import { useSelector } from 'react-redux'
 
 
 
+const Header = () => {
+    const pageTitle = useSelector((state) => state.general.title)
 
-export default function Header() {
+
     return (
         <div className="header">
 
             <div className="header-component"  >
-                <div>
-                    Sayfa Başlık
-                </div>
+
+                <h3 className="app-title" >
+                    {pageTitle}
+                </h3>
                 <div  >
                     <Image
                         color="blue"
@@ -27,5 +34,7 @@ export default function Header() {
 
             </div>
         </div>
-    );
+    )
 }
+
+export default Header;
