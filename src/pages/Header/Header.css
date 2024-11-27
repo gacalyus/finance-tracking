@@ -3,10 +3,9 @@
     z-index: 1;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 78px;
-    background-color: red
+    background-color: #ff5757;
 }
 
 .header-component {
