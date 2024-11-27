@@ -1,11 +1,12 @@
 
+import ExpensesMonitoring from "../component/expenses/ExpensesMonitoring";
 import styles from "../page.module.css";
 
 
 export default function Page() {
     return (
-        < p className={styles.home} >
-            Expenses
-        </p>
+        < div className={styles.home} >
+            <ExpensesMonitoring />
+        </div>
     );
 } 

@@ -5,14 +5,6 @@ import "./generalMonitoring.css"
 import ColumnChart from "../charts/ColumnChart"
 
 
-
-
-
-
-
-
-
-
 const GeneralMonitoring = () => {
     const [er, set] = useState(false)
 

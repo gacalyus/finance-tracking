@@ -1,11 +1,12 @@
 
-import GeneralMonitoring from "../component/generalmonitoring/GeneralMonitoring";
+import ExpensesAdd from "../component/expensesAdd/ExpensesAdd";
 import styles from "../page.module.css";
+
 
 export default function Page() {
     return (
         < div className={styles.home} >
-            <GeneralMonitoring />
+            <ExpensesAdd />
         </div>
     );
 } 
