@@ -6,6 +6,8 @@ import Image from "next/image";
 import expensesIconSmall from "../../../images/expensesIconSmall.svg"
 import styles from "./expensesMonitoring.module.css";
 import { expensesArray } from "./expensesType";
+import MonthlyExpenseChart from "../charts/MonthlyExpenseChart";
+import ExpenseCategoryChart from "../charts/ExpenseCategoryChart";
 
 const ExpensesMonitoring = () => {
     const [expensesTypeArray, setExpensesTypeArray] = useState(expensesArray);
@@ -63,10 +65,10 @@ const ExpensesMonitoring = () => {
 
             </div>
             <div className="itemcomponent">
-                3
+                < MonthlyExpenseChart />
             </div>
             <div className="itemcomponent">
-                4
+                <ExpenseCategoryChart />
             </div>
         </div>
     )

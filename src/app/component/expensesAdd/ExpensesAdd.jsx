@@ -6,6 +6,7 @@ import Image from "next/image";
 import expensesIconSmall from "../../../images/expensesIconSmall.svg"
 import "./expensesAdd.css";
 import { expensesArray } from "../expenses/expensesType";
+import ExpensesCountAdd from "./ExpensesCountAdd";
 
 const ExpensesAdd = () => {
 
@@ -45,9 +46,10 @@ const ExpensesAdd = () => {
     return (
         <div className="container">
             <div className="itemcomponent">
+                <ExpensesCountAdd />
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name">Gider Adı</label>
+                        <label htmlFor="name">Gider Kategorileri Adı</label>
                         <input
                             type="text"
                             id="name"
@@ -57,27 +59,10 @@ const ExpensesAdd = () => {
                             required
                         />
                     </div>
-                    {/* <div>
-                        <label htmlFor="type">Gider Türü</label>
-                        <select
-                            id="type"
-                            name="type"
-                            value={newExpense.type}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="">Bir tür seçin</option>
-                            <option value="1">Yiyecek & İçecek</option>
-                            <option value="2">Alışveriş</option>
-                            <option value="3">Ulaşım</option>
-                            <option value="4">Hayat & Eğlence</option>
-                            <option value="5">İletişim & Teknoloji</option>
-                            <option value="6">Finansal Giderler</option>
-                        </select>
-                    </div> */}
-                    <button type="submit">Ekle</button>
+                    <button type="submit">Gider Kategorileri Ekle</button>
                 </form>
             </div>
+
             <div className="itemcomponent" style={{ height: "340px" }}>
                 <div className="cart"   >
                     <div className="cartHeader"  >
@@ -85,7 +70,9 @@ const ExpensesAdd = () => {
                     </div>
                     <div className="cartContent"   >
                         {expensesTypeArray && expensesTypeArray.map((item) => (
-                            <div key={item.type} className="expensesCartContent" style={{ display: 'flex', alignItems: 'center', flexBasis: '45%', flexGrow: '1' }} >
+                            <div key={item.type} className="expensesCartContent"
+                                style={{ display: 'flex', alignItems: 'center', flexBasis: '45%', flexGrow: '1' }}
+                            >
                                 <Image
                                     src={expensesIconSmall}
                                     alt="Next.js logo"
@@ -98,6 +85,10 @@ const ExpensesAdd = () => {
                         ))}
                     </div>
                 </div>
+
+            </div>
+
+            <div className="itemcomponent">
 
             </div>
         </div>
