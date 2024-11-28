@@ -1,18 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import "../expensesAdd/expensesAdd.css";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-const expenses = [
-    { description: "tel", type: 5, amount: 450, date: "2024-11-08" },
-    { description: "e", type: 5, amount: 250, date: "2024-11-10" },
-    { description: "e", type: 2, amount: 650, date: "2024-10-31" },
-    { description: "ew", type: 4, amount: 550, date: "2024-10-11" },
-    { description: "ew", type: 6, amount: 450, date: "2024-09-07" },
-    { description: "sda", type: 3, amount: 250, date: "2024-07 - 13" },
-    { description: "as", type: 2, amount: 280, date: "2024-06 - 14" },
-    { description: "450", type: 4, amount: 200, date: "2023-06 - 28" },
-    { description: "şi", type: 5, amount: 350, date: "2023 - 12 - 28" }
-];
-
+import { expenses } from './expensesValue';
 
 const categories = [
     { name: "Yiyecek & İçecek", type: 1 },
@@ -24,35 +13,51 @@ const categories = [
 ];
 
 
-const groupByCategoryForMonth = (expenses, selectedMonth) => {
-    const categoryTotals = categories.map(category => ({ name: category.name, totalAmount: 0 }));
-
-    expenses.forEach(expense => {
-        const expenseDate = new Date(expense.date);
-        const expenseMonth = expenseDate.getMonth() + 1;
-        const expenseYear = expenseDate.getFullYear();
 
 
-        if (expenseMonth === selectedMonth.month && expenseYear === selectedMonth.year) {
-            const category = categoryTotals.find(cat => cat.name === categories.find(c => c.type === expense.type).name);
-            if (category) {
-                category.totalAmount += expense.amount;
-            }
-        }
-    });
 
-    return categoryTotals.filter(category => category.totalAmount > 0);
-};
-
-
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#a4de6c', '#d0ed57'];
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#a4de6c', '#d0ed57', '#C0C0C0', '#000000'];
 
 const ExpenseCategoryChart = () => {
+    const [expensesState, setExpensesState] = useState(expenses);
+    const [categoriesState, setCategoriesState] = useState(categories);
     const [selectedMonth, setSelectedMonth] = useState({ month: 11, year: 2024 });
 
-    const categoryData = groupByCategoryForMonth(expenses, selectedMonth);
 
 
+    const groupByCategoryForMonth = (expenses, selectedMonth) => {
+        const categoryTotals = categoriesState.map(category => ({ name: category.name, totalAmount: 0 }));
+
+        expenses.forEach(expense => {
+            const expenseDate = new Date(expense.date);
+            const expenseMonth = expenseDate.getMonth() + 1;
+            const expenseYear = expenseDate.getFullYear();
+
+
+            if (expenseMonth === selectedMonth.month && expenseYear === selectedMonth.year) {
+                const category = categoryTotals.find(cat => cat?.name === categoriesState.find(c => c.type === expense.type)?.name);
+                if (category) {
+                    category.totalAmount += expense.amount;
+                }
+            }
+        });
+
+        return categoryTotals.filter(category => category.totalAmount > 0);
+    };
+
+    const categoryData = groupByCategoryForMonth(expensesState, selectedMonth);
+
+    useEffect(() => {
+        if (localStorage.getItem('expensesAmount')) {
+            setExpensesState([...JSON.parse(localStorage.getItem('expensesAmount')), ...expenses])
+        }
+    }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem('expensesLocalArray')) {
+            setCategoriesState([...JSON.parse(localStorage.getItem('expensesLocalArray')), ...expenses])
+        }
+    }, []);
 
     const handleMonthChange = (event) => {
         const [month, year] = event.target.value.split('-');
@@ -61,15 +66,16 @@ const ExpenseCategoryChart = () => {
 
     return (
         <div>
-            <h1>{selectedMonth.month}-{selectedMonth.year} Kategorilere Göre Harcama</h1>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h4>{selectedMonth.month}-{selectedMonth.year} Kategorilere Göre Aylık Harcama</h4>
 
+                <select onChange={handleMonthChange} style={{ width: "120px", height: "30px", padding: '0px' }} >
+                    <option value="11-2024">Kasım 2024</option>
+                    <option value="10-2024">Ekim 2024</option>
+                    <option value="9-2024">Eylül 2024</option>
+                </select>
+            </div>
 
-
-            <select onChange={handleMonthChange}>
-                <option value="11-2024">Kasım 2024</option>
-                <option value="10-2024">Ekim 2024</option>
-                <option value="9-2024">Eylül 2024</option>
-            </select>
 
             <ResponsiveContainer width="100%" height={340}>
                 <PieChart>

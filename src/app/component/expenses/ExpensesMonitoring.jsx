@@ -20,6 +20,12 @@ const ExpensesMonitoring = () => {
 
     return (
         <div className="container">
+            <div className="itemcomponent">
+                < MonthlyExpenseChart />
+            </div>
+            <div className="itemcomponent">
+                <ExpenseCategoryChart />
+            </div>
             <div className="itemcomponent" style={{ height: "340px" }}>
                 <div className={styles.cartexpenses}  >
                     <div className={styles.cartHeaderExpenses}  >
@@ -64,12 +70,7 @@ const ExpensesMonitoring = () => {
                 </div>
 
             </div>
-            <div className="itemcomponent">
-                < MonthlyExpenseChart />
-            </div>
-            <div className="itemcomponent">
-                <ExpenseCategoryChart />
-            </div>
+
         </div>
     )
 }

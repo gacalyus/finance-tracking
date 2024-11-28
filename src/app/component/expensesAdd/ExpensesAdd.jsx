@@ -59,7 +59,7 @@ const ExpensesAdd = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Gider Kategorileri Ekle</button>
+                    <button type="submit">Gider Kategorisi Ekle</button>
                 </form>
             </div>
 

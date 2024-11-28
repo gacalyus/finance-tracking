@@ -62,7 +62,7 @@
  }
 
  form input,
- form select {
+ select {
      width: 93%;
      padding: 12px;
      font-size: 14px;
@@ -73,7 +73,7 @@
  }
 
  form input:focus,
- form select:focus {
+ select:focus {
      border-color: #4CAF50;
      background-color: #fff;
      outline: none;

@@ -26,7 +26,7 @@ const ExpensesCountAdd = ({ render }) => {
         let newArr = [...expensesAmountArray];
         newArr = [...newArr, {
             description: newExpense.description,
-            type: newExpense.type,
+            type: Number(newExpense.type),
             amount: Number(newExpense.amount),
             date: formattedDate,
         }];
