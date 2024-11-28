@@ -2,55 +2,53 @@
 
 import React, { useEffect, useState } from "react"
 import "../generalmonitoring/generalMonitoring.css"
+import "../expensesAdd/expensesAdd.css";
+import incomesmall from "../../../images/incomesmall.svg"
 import Image from "next/image";
-import expensesIconSmall from "../../../images/expensesIconSmall.svg"
-import "./expensesAdd.css";
-import { expensesArray } from "../expenses/expensesType";
-import ExpensesCountAdd from "./ExpensesCountAdd";
+import { incomeArray } from "../income/incomeType";
 import CategoryAdd from "../categoryAdd/CategoryAdd";
+import IncomeCountAdd from "./IncomeCountAdd";
 
-const ExpensesAdd = () => {
+const IncomeAdd = () => {
 
-    const [expensesTypeArray, setExpensesTypeArray] = useState(expensesArray);
+    const [incomeTypeArray, setIncomeTypeArray] = useState(incomeArray);
 
-    const [newExpense, setNewExpense] = useState({
+    const [newIncome, setNewIncome] = useState({
         name: '',
         type: '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let newArr = expensesTypeArray
-        newArr = [...newArr, { name: newExpense.name, type: expensesTypeArray[expensesTypeArray.length - 1].type + 1 }]
-        setExpensesTypeArray(newArr);
-        localStorage.setItem('expensesLocalArray', JSON.stringify(newArr))
-        setNewExpense({ name: '', type: '' });
+        let newArr = incomeTypeArray
+        newArr = [...newArr, { name: newIncome.name, type: incomeTypeArray[incomeTypeArray.length - 1].type + 1 }]
+        setIncomeTypeArray(newArr);
+        localStorage.setItem('incomeLocalArray', JSON.stringify(newArr))
+        setNewIncome({ name: '', type: '' });
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (value.length > 72) return;
-        setNewExpense((prevState) => ({
+        setNewIncome((prevState) => ({
             ...prevState,
             [name]: value,
         }));
     };
 
-
-
     useEffect(() => {
-        if (localStorage.getItem('expensesLocalArray')) {
-            setExpensesTypeArray(JSON.parse(localStorage.getItem('expensesLocalArray')))
+        if (localStorage.getItem('incomeLocalArray')) {
+            setIncomeTypeArray(JSON.parse(localStorage.getItem('incomeLocalArray')))
         }
     }, [])
 
     return (
         <div className="container">
             <div className="itemcomponent">
-                <ExpensesCountAdd />
+                <IncomeCountAdd />
                 < CategoryAdd
-                    name="Gider"
-                    value={newExpense.name}
+                    name="Gelir"
+                    value={newIncome.name}
                     onChange={handleInputChange}
                     onSubmit={handleSubmit} />
             </div>
@@ -58,15 +56,15 @@ const ExpensesAdd = () => {
             <div className="itemcomponent" style={{ height: "340px" }}>
                 <div className="cart"   >
                     <div className="cartHeader"  >
-                        Gider Kategorileri
+                        Gelir Kategorileri
                     </div>
                     <div className="cartContent"   >
-                        {expensesTypeArray && expensesTypeArray.map((item) => (
+                        {incomeTypeArray && incomeTypeArray.map((item) => (
                             <div key={item.type} className="expensesCartContent"
                                 style={{ display: 'flex', alignItems: 'center', flexBasis: '45%', flexGrow: '1' }}
                             >
                                 <Image
-                                    src={expensesIconSmall}
+                                    src={incomesmall}
                                     alt="Next.js logo"
                                     width={32}
                                     height={32}
@@ -87,4 +85,5 @@ const ExpensesAdd = () => {
     )
 }
 
-export default ExpensesAdd;
+
+export default IncomeAdd;

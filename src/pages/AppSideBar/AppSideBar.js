@@ -27,6 +27,8 @@ export default function AppSidebar() {
 
         { id: 2, name: "Gelirler", disabled: false, path: "/income", svg: sales },
 
+        { id: 10, name: "Gelir Ekle ", disabled: false, path: "/incomeAdd", svg: forcasting },
+
         { id: 3, name: "Giderler", disabled: false, path: "/expenses", svg: sales },
 
         { id: 9, name: "Gider Ekle ", disabled: false, path: "/expensesAdd", svg: forcasting },

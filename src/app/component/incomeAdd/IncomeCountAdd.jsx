@@ -1,15 +1,17 @@
+
+
 "use client"
 import React, { useEffect, useState } from "react"
 import "../generalmonitoring/generalMonitoring.css"
-import "./expensesAdd.css";
-import { expensesArray } from "../expenses/expensesType";
+import "../expensesAdd/expensesAdd.css";
 import { format } from 'date-fns';
+import { incomeArray } from "../income/incomeType";
 
 
-const ExpensesCountAdd = () => {
-    const [expensesTypeArray, setExpensesTypeArray] = useState(expensesArray);
-    const [expensesAmountArray, setExpensesAmountArray] = useState([]);
-    const [newExpense, setNewExpense] = useState({
+const IncomeCountAdd = () => {
+    const [incomeTypeArray, setIncomeTypeArray] = useState(incomeArray);
+    const [incomeAmountArray, setIncomeAmountArray] = useState([]);
+    const [newIncome, setNewIncome] = useState({
         amount: 0,
         description: '',
         type: '',
@@ -19,53 +21,53 @@ const ExpensesCountAdd = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const formattedDate = newExpense.date
-            ? format(new Date(newExpense.date), 'yyyy-MM-dd')
+        const formattedDate = newIncome.date
+            ? format(new Date(newIncome.date), 'yyyy-MM-dd')
             : format(new Date(), 'yyyy-MM-dd');
 
-        let newArr = [...expensesAmountArray];
+        let newArr = [...incomeAmountArray];
         newArr = [...newArr, {
-            description: newExpense.description,
-            type: Number(newExpense.type),
-            amount: Number(newExpense.amount),
+            description: newIncome.description,
+            type: Number(newIncome.type),
+            amount: Number(newIncome.amount),
             date: formattedDate,
         }];
 
-        setExpensesAmountArray(newArr);
-        localStorage.setItem('expensesAmount', JSON.stringify(newArr));
-        setNewExpense({ amount: 0, description: '', type: '', date: '' });
+        setIncomeAmountArray(newArr);
+        localStorage.setItem('incomeAmount', JSON.stringify(newArr));
+        setNewIncome({ amount: 0, description: '', type: '', date: '' });
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (value.length > 72) return;
-        setNewExpense((prevState) => ({
+        setNewIncome((prevState) => ({
             ...prevState,
             [name]: value,
         }));
     };
 
     useEffect(() => {
-        if (localStorage.getItem('expensesAmount')) {
-            setExpensesAmountArray(JSON.parse(localStorage.getItem('expensesAmount')))
+        if (localStorage.getItem('incomeAmount')) {
+            setIncomeAmountArray(JSON.parse(localStorage.getItem('incomeAmount')))
         }
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem('expensesLocalArray')) {
-            setExpensesTypeArray(JSON.parse(localStorage.getItem('expensesLocalArray')))
+        if (localStorage.getItem('incomeLocalArray')) {
+            setIncomeTypeArray(JSON.parse(localStorage.getItem('incomeLocalArray')))
         }
     }, []);
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="amount">Gider Miktarı</label>
+                <label htmlFor="amount">Gelir Miktarı</label>
                 <input
                     type="number"
                     id="amount"
                     name="amount"
-                    value={newExpense.amount}
+                    value={newIncome.amount}
                     onChange={handleInputChange}
                     required
                 />
@@ -76,22 +78,22 @@ const ExpensesCountAdd = () => {
                     type="text"
                     id="description"
                     name="description"
-                    value={newExpense.description}
+                    value={newIncome.description}
                     onChange={handleInputChange}
                     required
                 />
             </div>
             <div>
-                <label htmlFor="type">Gider Türü</label>
+                <label htmlFor="type">Gelir Türü</label>
                 <select
                     id="type"
                     name="type"
-                    value={newExpense.type}
+                    value={newIncome.type}
                     onChange={handleInputChange}
                     required
                 >
                     <option value="">Bir tür seçin</option>
-                    {expensesTypeArray && expensesTypeArray.map((item) => (
+                    {incomeTypeArray && incomeTypeArray.map((item) => (
                         <option key={item.type} value={item.type}> {item.name}</option>
                     ))}
                 </select>
@@ -102,14 +104,14 @@ const ExpensesCountAdd = () => {
                     type="date"
                     id="date"
                     name="date"
-                    value={newExpense.date}
+                    value={newIncome.date}
                     onChange={handleInputChange}
                     required
                 />
             </div>
-            <button type="submit">Gider Ekle</button>
+            <button type="submit">Gelir Ekle</button>
         </form>
     );
 }
 
-export default ExpensesCountAdd;
+export default IncomeCountAdd;

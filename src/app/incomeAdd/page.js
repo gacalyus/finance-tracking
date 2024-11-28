@@ -1,11 +1,12 @@
-import IncomeMonitoring from "../component/income/IncomeMonitoring";
+
+import IncomeAdd from "../component/incomeAdd/IncomeAdd";
 import styles from "../page.module.css";
 
 
 export default function Page() {
     return (
         < div className={styles.home} >
-            <IncomeMonitoring />
+            <IncomeAdd />
         </div>
     );
 } 
